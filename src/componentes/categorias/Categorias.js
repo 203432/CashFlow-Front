@@ -5,6 +5,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEdit, faTrashAlt } from "@fortawesome/free-solid-svg-icons";
 import { Modal, ModalBody, ModalFooter, ModelHeader } from "reactstrap";
+import CatStyle from '../recursos.module.css'
 
 class App extends Component {
   state = {
@@ -16,7 +17,7 @@ class App extends Component {
       .get("http://localhost:8000/api/v1/categoria/", {
         headers: {
           "Content-Type": "application/json",
-          Authorization: "Token c0b7ad49032cc9a0ee03c84115f09ed6dd6aceb8",
+          Authorization: "Token 03847c98baeba02569eed58b89ab7802fea497c7",
         },
       })
       .then((response) => {
@@ -42,7 +43,7 @@ class App extends Component {
           .post("http://localhost:8000/api/v1/categoria/", postData, {
             headers: {
               "Content-Type": "application/json",
-              Authorization: "Token c0b7ad49032cc9a0ee03c84115f09ed6dd6aceb8",
+              Authorization: "Token 03847c98baeba02569eed58b89ab7802fea497c7",
             },
           })
           .then((response) => {
@@ -59,10 +60,23 @@ class App extends Component {
     return (
       <div className="App">
         <header className="App-header">
-          <input id="clasificacion" placeholder="Clasificacion" />
+
+          {/* <input id="clasificacion" placeholder="Clasificacion" /> */}
+          <div className={CatStyle.inputContainer}>
+            <input id="clasificacion" className={CatStyle.input} type="text" placeholder=" " />
+            <div className={CatStyle.cut}></div>
+            <label for="clasificacion" className={CatStyle.placeholder}>Clasiciacion</label>
+          </div>
           <br />
-          <input id="nombre" placeholder="nombre categoria" />
-          <button onClick={consume_create_category}>Guardar/Editar</button>
+
+          {/* <input id="nombre" placeholder="nombre categoria" /> */}
+          <div className={CatStyle.inputContainer}>
+            <input id="nombre" className={CatStyle.input} type="text" placeholder=" " autocomplete="off" />
+            <div className={CatStyle.cut}></div>
+            <label for="nombre" className={CatStyle.placeholder}>Nombre</label>
+          </div>
+          <br />
+          <button onClick={consume_create_category} className={CatStyle.button1}>Guardar/Editar</button>
 
           <table className="table">
             <thead>
@@ -80,9 +94,9 @@ class App extends Component {
                     <td> {categoria.pk}</td>
                     <td> {categoria.nombre_categoria}</td>
                     <td> {categoria.clasificacion}</td>
-                    <td> 
-                      <button className=" btn btn-primary"><FontAwesomeIcon icon={faEdit}/></button>
-                      <button className=" btn btn-danger"><FontAwesomeIcon icon={faTrashAlt}/></button>
+                    <td>
+                      <button className=" btn btn-primary"><FontAwesomeIcon icon={faEdit} /></button>
+                      <button className=" btn btn-danger"><FontAwesomeIcon icon={faTrashAlt} /></button>
                     </td>
                   </tr>
                 );

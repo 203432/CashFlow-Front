@@ -16,7 +16,7 @@ function App() {
             .post("http://localhost:8000/api/v1/indicadores/", postData, {
               headers: {
                 "Content-Type": "application/json",
-                Authorization: "Token c0b7ad49032cc9a0ee03c84115f09ed6dd6aceb8",
+                Authorization: "Token 03847c98baeba02569eed58b89ab7802fea497c7",
               },
             })
             .then((response) => {
@@ -45,7 +45,7 @@ function App() {
             .post("http://localhost:8000/api/v1/indicadores/", postData, {
               headers: {
                 "Content-Type": "application/json",
-                Authorization: "Token c0b7ad49032cc9a0ee03c84115f09ed6dd6aceb8",
+                Authorization: "Token 03847c98baeba02569eed58b89ab7802fea497c7",
               },
             })
             .then((response) => {
@@ -74,7 +74,7 @@ function App() {
             .post("http://localhost:8000/api/v1/indicadores/", postData, {
               headers: {
                 "Content-Type": "application/json",
-                Authorization: "Token c0b7ad49032cc9a0ee03c84115f09ed6dd6aceb8",
+                Authorization: "Token 03847c98baeba02569eed58b89ab7802fea497c7",
               },
             })
             .then((response) => {

@@ -5,6 +5,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEdit, faTrashAlt } from "@fortawesome/free-solid-svg-icons";
 import { Modal, ModalBody, ModalFooter, ModelHeader } from "reactstrap";
+import FlujoStyle from '../recursos.module.css'
 
 class App extends Component {
   state = {
@@ -16,7 +17,7 @@ class App extends Component {
       .get("http://localhost:8000/api/v1/flujo/", {
         headers: {
           "Content-Type": "application/json",
-          Authorization: "Token c0b7ad49032cc9a0ee03c84115f09ed6dd6aceb8",
+          Authorization: "Token 03847c98baeba02569eed58b89ab7802fea497c7",
         },
       })
       .then((response) => {
@@ -30,7 +31,7 @@ class App extends Component {
       .get("http://localhost:8000/api/v1/categoria/", {
         headers: {
           "Content-Type": "application/json",
-          Authorization: "Token c0b7ad49032cc9a0ee03c84115f09ed6dd6aceb8",
+          Authorization: "Token 03847c98baeba02569eed58b89ab7802fea497c7",
         },
       })
       .then((response) => {
@@ -70,7 +71,7 @@ class App extends Component {
           .post("http://localhost:8000/api/v1/flujo/", postData, {
             headers: {
               "Content-Type": "application/json",
-              Authorization: "Token c0b7ad49032cc9a0ee03c84115f09ed6dd6aceb8",
+              Authorization: "Token 03847c98baeba02569eed58b89ab7802fea497c7",
             },
           })
           .then((response) => {
@@ -101,9 +102,14 @@ class App extends Component {
           <input type="radio" name="tipo" id="salida" />
           <label htmlFor="salida">Salida</label>
           <br />
-          <input id="descripcion" placeholder="Descripcion" />
+          {/* <input id="descripcion" placeholder="Descripcion" /> */}
+          <div className={FlujoStyle.inputContainer}>
+            <input id="descripcion" className={FlujoStyle.input} type="text" placeholder=" " />
+            <div className={FlujoStyle.cut}></div>
+            <label for="descripcion" className={FlujoStyle.placeholder}>Descripcion</label>
+          </div>
           <br />
-          <button onClick={consume_create_category}>Guardar/Editar</button>
+          <button onClick={consume_create_category} className={FlujoStyle.button1}>Guardar/Editar</button>
 
           <table className="table">
             <thead>
