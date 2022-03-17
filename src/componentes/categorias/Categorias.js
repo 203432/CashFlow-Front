@@ -54,7 +54,6 @@ class App extends Component {
             console.log(error.response.data);
           });
       }
-      // alert("Hola login");
     };
     return (
       <div className="App">

@@ -5,12 +5,12 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEdit, faTrashAlt } from "@fortawesome/free-solid-svg-icons";
 import { Modal, ModalBody, ModalFooter, ModelHeader } from "reactstrap";
+import SelectInput from './SelectInput'
 
 class App extends Component {
   state = {
     data: [],
   };
-
   get_Flujo = () => {
     axios
       .get("http://localhost:8000/api/v1/flujo/", {
@@ -25,26 +25,15 @@ class App extends Component {
       });
   };
 
-  get_Category = () => {
-    axios
-      .get("http://localhost:8000/api/v1/categoria/", {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: "Token c0b7ad49032cc9a0ee03c84115f09ed6dd6aceb8",
-        },
-      })
-      .then((response) => {
-        this.setState({ data: response.data });
-      });
-  };
-
   componentDidMount() {
-    this.get_Category();
     this.get_Flujo();
-  }
+   }
+
+ 
 
   render() {
-    const consume_create_category = () => {
+
+    const consume_create_flujo = () => {
       let entrada = document.getElementById("entrada").checked;
       let salida = document.getElementById("salida").checked;
       let flujo = "";
@@ -87,25 +76,8 @@ class App extends Component {
     return (
       <div className="App">
         <header className="App-header">
-          <select id="categoria">
-              <option defaultValue="0">Seleccione una categoria </option>
-            {this.state.data.map((el) => (
-              <option key={el.pk} value={el.pk}>
-                {el.nombre_categoria}
-              </option>
-            ))}
-          </select>
-          <input type="radio" name="tipo" id="entrada" />
-          <label htmlFor="entrada">Entrada</label>
-          <br />
-          <input type="radio" name="tipo" id="salida" />
-          <label htmlFor="salida">Salida</label>
-          <br />
-          <input id="descripcion" placeholder="Descripcion" />
-          <br />
-          <button onClick={consume_create_category}>Guardar/Editar</button>
-
-          <table className="table">
+          <div className="Container"></div>
+        <table className="table">
             <thead>
               <tr>
                 <th> PK </th>
@@ -136,6 +108,20 @@ class App extends Component {
               })}
             </tbody>
           </table>
+
+          <input type="radio" name="tipo" id="entrada" />
+          <label htmlFor="entrada">Entrada</label>
+          <br />
+          <input type="radio" name="tipo" id="salida" />
+          <label htmlFor="salida">Salida</label>
+          <br />
+          <input id="descripcion" placeholder="Descripcion" />
+          <br />
+          <button onClick={consume_create_flujo}>Guardar/Editar</button>
+          <SelectInput/>
+          <br/>
+          <br/>
+          <br/>
         </header>
       </div>
     );
