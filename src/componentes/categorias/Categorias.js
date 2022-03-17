@@ -6,6 +6,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEdit, faTrashAlt } from "@fortawesome/free-solid-svg-icons";
 import { Modal, ModalBody, ModalFooter, ModelHeader } from "reactstrap";
 import CatStyle from '../recursos.module.css'
+import './Categorias.css'
 
 class App extends Component {
   state = {
@@ -59,49 +60,56 @@ class App extends Component {
     return (
       <div className="App">
         <header className="App-header">
+        <div className="container2">
+          
 
-          {/* <input id="clasificacion" placeholder="Clasificacion" /> */}
-          <div className={CatStyle.inputContainer}>
-            <input id="clasificacion" className={CatStyle.input} type="text" placeholder=" " />
-            <div className={CatStyle.cut}></div>
-            <label for="clasificacion" className={CatStyle.placeholder}>Clasiciacion</label>
-          </div>
-          <br />
+            <div className="cDer">
+              <div className={CatStyle.inputContainer}>
+                <input id="clasificacion" className={CatStyle.input} type="text" placeholder=" " />
+                <div className={CatStyle.cut}></div>
+                <label for="clasificacion" className={CatStyle.placeholder}>Clasiciacion</label>
+              </div>
+              <br />
 
-          {/* <input id="nombre" placeholder="nombre categoria" /> */}
-          <div className={CatStyle.inputContainer}>
-            <input id="nombre" className={CatStyle.input} type="text" placeholder=" " autocomplete="off" />
-            <div className={CatStyle.cut}></div>
-            <label for="nombre" className={CatStyle.placeholder}>Nombre</label>
-          </div>
-          <br />
-          <button onClick={consume_create_category} className={CatStyle.button1}>Guardar/Editar</button>
+              <div className={CatStyle.inputContainer}>
+                <input id="nombre" className={CatStyle.input} type="text" placeholder=" " autocomplete="off" />
+                <div className={CatStyle.cut}></div>
+                <label for="nombre" className={CatStyle.placeholder}>Nombre</label>
+              </div>
+              <br />
+              <button onClick={consume_create_category} className={CatStyle.button1}>Guardar/Editar</button>
+            </div>
 
-          <table className="table">
-            <thead>
-              <tr>
-                <th> PK </th>
-                <th> nombre </th>
-                <th> clasificacion </th>
-                <th> Acciones </th>
-              </tr>
-            </thead>
-            <tbody>
-              {this.state.data.map((categoria) => {
-                return (
+
+            <div className="cIzq">
+              <table className="table">
+                <thead>
                   <tr>
-                    <td> {categoria.pk}</td>
-                    <td> {categoria.nombre_categoria}</td>
-                    <td> {categoria.clasificacion}</td>
-                    <td>
-                      <button className=" btn btn-primary"><FontAwesomeIcon icon={faEdit} /></button>
-                      <button className=" btn btn-danger"><FontAwesomeIcon icon={faTrashAlt} /></button>
-                    </td>
+                    <th> PK </th>
+                    <th> nombre </th>
+                    <th> clasificacion </th>
+                    <th> Acciones </th>
                   </tr>
-                );
-              })}
-            </tbody>
-          </table>
+                </thead>
+                <tbody>
+                  {this.state.data.map((categoria) => {
+                    return (
+                      <tr>
+                        <td> {categoria.pk}</td>
+                        <td> {categoria.nombre_categoria}</td>
+                        <td> {categoria.clasificacion}</td>
+                        <td>
+                          <button className=" btn btn-primary"><FontAwesomeIcon icon={faEdit} /></button>
+                          <button className=" btn btn-danger"><FontAwesomeIcon icon={faTrashAlt} /></button>
+                        </td>
+                      </tr>
+                    );
+                  })}
+                </tbody>
+              </table>
+            </div>
+          
+        </div>
         </header>
       </div>
     );

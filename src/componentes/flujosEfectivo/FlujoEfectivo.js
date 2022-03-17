@@ -6,6 +6,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEdit, faTrashAlt } from "@fortawesome/free-solid-svg-icons";
 import { Modal, ModalBody, ModalFooter, ModelHeader } from "reactstrap";
 import SelectInput from './SelectInput'
+import FlujoStyle from '../recursos.module.css'
+import './Flujo.css'
 
 class App extends Component {
   state = {
@@ -27,9 +29,9 @@ class App extends Component {
 
   componentDidMount() {
     this.get_Flujo();
-   }
+  }
 
- 
+
 
   render() {
 
@@ -76,52 +78,62 @@ class App extends Component {
     return (
       <div className="App">
         <header className="App-header">
-          <div className="Container"></div>
-        <table className="table">
-            <thead>
-              <tr>
-                <th> PK </th>
-                <th> Fecha </th>
-                <th> Descripcion </th>
-                <th> Categoria </th>
-                <th> Herramientas </th>
-              </tr>
-            </thead>
-            <tbody>
-              {this.state.data.map((flujo) => {
-                return (
-                  <tr>
-                    <td> {flujo.pk}</td>
-                    <td> {flujo.fecha}</td>
-                    <td> {flujo.descripcion}</td>
-                    <td> {flujo.categoria}</td>
-                    <td>
-                      <button className=" btn btn-primary">
-                        <FontAwesomeIcon icon={faEdit} />
-                      </button>
-                      <button className=" btn btn-danger">
-                        <FontAwesomeIcon icon={faTrashAlt} />
-                      </button>
-                    </td>
-                  </tr>
-                );
-              })}
-            </tbody>
-          </table>
+          <div className="containerF">
+            <table className="table">
+              <thead>
+                <tr>
+                  <th> PK </th>
+                  <th> Fecha </th>
+                  <th> Descripcion </th>
+                  <th> Categoria </th>
+                  <th> Herramientas </th>
+                </tr>
+              </thead>
+              <tbody>
+                {this.state.data.map((flujo) => {
+                  return (
+                    <tr>
+                      <td> {flujo.pk}</td>
+                      <td> {flujo.fecha}</td>
+                      <td> {flujo.descripcion}</td>
+                      <td> {flujo.categoria}</td>
+                      <td>
+                        <button className=" btn btn-primary">
+                          <FontAwesomeIcon icon={faEdit} />
+                        </button>
+                        <button className=" btn btn-danger">
+                          <FontAwesomeIcon icon={faTrashAlt} />
+                        </button>
+                      </td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
 
-          <input type="radio" name="tipo" id="entrada" />
-          <label htmlFor="entrada">Entrada</label>
-          <br />
-          <input type="radio" name="tipo" id="salida" />
-          <label htmlFor="salida">Salida</label>
-          <br />
-          <input id="descripcion" placeholder="Descripcion" />
-          <br />
-          <button onClick={consume_create_flujo}>Guardar/Editar</button>
-          <SelectInput/>
-          <br/>
-          <br/>
-          <br/>
+            <div className="inputS">
+            <p>Seleccione el tipo de flujo a ingresar</p>
+              <input type="radio" name="tipo" id="entrada" />
+              <label htmlFor="entrada">Entrada</label>
+              <br />
+              <input type="radio" name="tipo" id="salida" />
+              <label htmlFor="salida">Salida</label>
+              
+            </div>
+            {/* <input id="descripcion" placeholder="Descripcion" /> */}
+            <div className={FlujoStyle.inputContainer}>
+              <input id="descripcion" className={FlujoStyle.input} type="text" placeholder=" " />
+              <div className={FlujoStyle.cut}></div>
+              <label for="descripcion" className={FlujoStyle.placeholder}>Descripcion</label>
+            </div>
+            <br />
+            <button onClick={consume_create_flujo} className={FlujoStyle.button1}>Guardar/Editar</button>
+            <SelectInput />
+            <br />
+            <br />
+            <br />
+          </div>
+
         </header>
       </div>
     );
