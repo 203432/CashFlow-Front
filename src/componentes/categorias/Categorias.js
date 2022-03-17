@@ -5,8 +5,9 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEdit, faTrashAlt } from "@fortawesome/free-solid-svg-icons";
 import { Modal, ModalBody, ModalFooter, ModelHeader } from "reactstrap";
-import CatStyle from '../recursos.module.css'
-import './Categorias.css'
+import CatStyle from "../recursos.module.css";
+import SStyle from '../recursos.module.css';
+import "./Categorias.css";
 
 class App extends Component {
   state = {
@@ -18,12 +19,11 @@ class App extends Component {
       .get("http://localhost:8000/api/v1/categoria/", {
         headers: {
           "Content-Type": "application/json",
-          Authorization: "Token 03847c98baeba02569eed58b89ab7802fea497c7",
+          Authorization: "Token c0b7ad49032cc9a0ee03c84115f09ed6dd6aceb8",
         },
       })
       .then((response) => {
         this.setState({ data: response.data });
-        console.log(response.data);
       });
   };
 
@@ -44,12 +44,13 @@ class App extends Component {
           .post("http://localhost:8000/api/v1/categoria/", postData, {
             headers: {
               "Content-Type": "application/json",
-              Authorization: "Token 03847c98baeba02569eed58b89ab7802fea497c7",
+              Authorization: "Token c0b7ad49032cc9a0ee03c84115f09ed6dd6aceb8",
             },
           })
           .then((response) => {
             console.log(response.data);
             alert("Se ha agregado exitosamente la nueva categoria");
+            window.location.reload()
             // redirectLogin();
           })
           .catch((error) => {
@@ -60,26 +61,41 @@ class App extends Component {
     return (
       <div className="App">
         <header className="App-header">
-        <div className="container2">
-          
-
+          <div className="container2">
             <div className="cDer">
               <div className={CatStyle.inputContainer}>
-                <input id="clasificacion" className={CatStyle.input} type="text" placeholder=" " />
-                <div className={CatStyle.cut}></div>
-                <label for="clasificacion" className={CatStyle.placeholder}>Clasiciacion</label>
+              <div className={SStyle.select}>
+              <select id="clasificacion">
+                  <option defaultValue="0">Seleccione una categoria </option>
+                    <option value="GAO">GAO</option>
+                    <option value="Costo-Venta">Costo-Venta</option>
+                    <option value="Ingreso">Ingreso</option>
+                </select>
+              </div>
               </div>
               <br />
 
               <div className={CatStyle.inputContainer}>
-                <input id="nombre" className={CatStyle.input} type="text" placeholder=" " autocomplete="off" />
+                <input
+                  id="nombre"
+                  className={CatStyle.input}
+                  type="text"
+                  placeholder=" "
+                  autocomplete="off"
+                />
                 <div className={CatStyle.cut}></div>
-                <label for="nombre" className={CatStyle.placeholder}>Nombre</label>
+                <label for="nombre" className={CatStyle.placeholder}>
+                  Nombre
+                </label>
               </div>
               <br />
-              <button onClick={consume_create_category} className={CatStyle.button1}>Guardar/Editar</button>
+              <button
+                onClick={consume_create_category}
+                className={CatStyle.button1}
+              >
+                Guardar/Editar
+              </button>
             </div>
-
 
             <div className="cIzq">
               <table className="table">
@@ -99,8 +115,12 @@ class App extends Component {
                         <td> {categoria.nombre_categoria}</td>
                         <td> {categoria.clasificacion}</td>
                         <td>
-                          <button className=" btn btn-primary"><FontAwesomeIcon icon={faEdit} /></button>
-                          <button className=" btn btn-danger"><FontAwesomeIcon icon={faTrashAlt} /></button>
+                          <button className=" btn btn-primary">
+                            <FontAwesomeIcon icon={faEdit} />
+                          </button>
+                          <button className=" btn btn-danger">
+                            <FontAwesomeIcon icon={faTrashAlt} />
+                          </button>
                         </td>
                       </tr>
                     );
@@ -108,8 +128,7 @@ class App extends Component {
                 </tbody>
               </table>
             </div>
-          
-        </div>
+          </div>
         </header>
       </div>
     );

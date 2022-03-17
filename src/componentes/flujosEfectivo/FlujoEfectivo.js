@@ -18,7 +18,7 @@ class App extends Component {
       .get("http://localhost:8000/api/v1/flujo/", {
         headers: {
           "Content-Type": "application/json",
-          Authorization: "Token 03847c98baeba02569eed58b89ab7802fea497c7",
+          Authorization: "Token c0b7ad49032cc9a0ee03c84115f09ed6dd6aceb8",
         },
       })
       .then((response) => {
@@ -53,6 +53,7 @@ class App extends Component {
         descripcion: document.getElementById("descripcion").value,
         tipo_flujo: flujo,
         categoria: document.getElementById("categoria").value,
+        cantidad : document.getElementById("cantidad").value,
       };
       if (postData.nombre_categoria === "" || postData.clasificacion === "") {
         alert("Todos los campos son requeridos");
@@ -61,12 +62,13 @@ class App extends Component {
           .post("http://localhost:8000/api/v1/flujo/", postData, {
             headers: {
               "Content-Type": "application/json",
-              Authorization: "Token 03847c98baeba02569eed58b89ab7802fea497c7",
+              Authorization: "Token c0b7ad49032cc9a0ee03c84115f09ed6dd6aceb8",
             },
           })
           .then((response) => {
             console.log(response.data);
             alert("Se ha agregado exitosamente el nuevo flujo");
+            window.location.reload()
             // redirectLogin();
           })
           .catch((error) => {
@@ -84,6 +86,7 @@ class App extends Component {
                 <tr>
                   <th> PK </th>
                   <th> Fecha </th>
+                  <th> Monto </th>
                   <th> Descripcion </th>
                   <th> Categoria </th>
                   <th> Herramientas </th>
@@ -95,6 +98,7 @@ class App extends Component {
                     <tr>
                       <td> {flujo.pk}</td>
                       <td> {flujo.fecha}</td>
+                      <td> ${flujo.cantidad}</td>
                       <td> {flujo.descripcion}</td>
                       <td> {flujo.categoria}</td>
                       <td>
@@ -127,8 +131,14 @@ class App extends Component {
               <label for="descripcion" className={FlujoStyle.placeholder}>Descripcion</label>
             </div>
             <br />
-            <button onClick={consume_create_flujo} className={FlujoStyle.button1}>Guardar/Editar</button>
+            <div className={FlujoStyle.inputContainer}>
+              <input id="cantidad" className={FlujoStyle.input} type="text" placeholder=" " />
+              <div className={FlujoStyle.cut}></div>
+              <label for="cantidad" className={FlujoStyle.placeholder}>Cantidad</label>
+            </div>
+            <br />
             <SelectInput />
+            <button onClick={consume_create_flujo} className={FlujoStyle.button1}>Guardar/Editar</button>
             <br />
             <br />
             <br />

@@ -18,7 +18,7 @@ class App extends Component {
       .get("http://localhost:8000/api/v1/categoria/", {
         headers: {
           "Content-Type": "application/json",
-          Authorization: "Token 03847c98baeba02569eed58b89ab7802fea497c7",
+          Authorization: "Token c0b7ad49032cc9a0ee03c84115f09ed6dd6aceb8",
         },
       })
       .then((response) => {
