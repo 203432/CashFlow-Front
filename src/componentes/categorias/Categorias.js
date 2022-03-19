@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -9,55 +9,65 @@ import CatStyle from "../recursos.module.css";
 import SStyle from '../recursos.module.css';
 import "./Categorias.css";
 
-class App extends Component {
-  state = {
-    data: [],
+function App()  {
+const [data, setData] =useState([]);
+
+const peticionGet =  () =>{
+   axios
+  .get("http://localhost:8000/api/v1/categoria/", {
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: "Token c0b7ad49032cc9a0ee03c84115f09ed6dd6aceb8",
+    },
+  })
+  .then((response) => {
+setData(response.data)
+  });
+} 
+
+useEffect(()=>{
+peticionGet();
+},[])
+
+const peticionPost = () => {
+  var tipoflu=""
+  var cat = document.getElementById("categoria").value
+  if(cat === "Ingreso"){
+tipoflu = "Entrada"
+  }
+  else{
+    tipoflu = "Salida"
+  }
+  var postData = {
+    categoria: cat,
+    tipo: tipoflu,
+    subCategoria: document.getElementById("subCategoria").value
   };
 
-  get_Category = () => {
+  if (postData.categoria === "" || postData.subCategoria === "") {
+    alert("Todos los campos son requeridos");
+  } else {
     axios
-      .get("http://localhost:8000/api/v1/categoria/", {
+      .post("http://localhost:8000/api/v1/categoria/", postData, {
         headers: {
           "Content-Type": "application/json",
           Authorization: "Token c0b7ad49032cc9a0ee03c84115f09ed6dd6aceb8",
         },
       })
       .then((response) => {
-        this.setState({ data: response.data });
+        console.log(response.data);
+        alert("Se ha agregado exitosamente la categoria");
+        window.location.reload()
+        // redirectLogin();
+      })
+      .catch((error) => {
+        console.log(error.response.data);
       });
-  };
-
-  componentDidMount() {
-    this.get_Category();
   }
+  // alert("Hola login");
+};
+    
 
-  render() {
-    const consume_create_category = () => {
-      var postData = {
-        nombre_categoria: document.getElementById("nombre").value,
-        clasificacion: document.getElementById("clasificacion").value,
-      };
-      if (postData.nombre_categoria === "" || postData.clasificacion === "") {
-        alert("Todos los campos son requeridos");
-      } else {
-        axios
-          .post("http://localhost:8000/api/v1/categoria/", postData, {
-            headers: {
-              "Content-Type": "application/json",
-              Authorization: "Token c0b7ad49032cc9a0ee03c84115f09ed6dd6aceb8",
-            },
-          })
-          .then((response) => {
-            console.log(response.data);
-            alert("Se ha agregado exitosamente la nueva categoria");
-            window.location.reload()
-            // redirectLogin();
-          })
-          .catch((error) => {
-            console.log(error.response.data);
-          });
-      }
-    };
     return (
       <div className="App">
         <header className="App-header">
@@ -65,7 +75,7 @@ class App extends Component {
             <div className="cDer">
               <div className={CatStyle.inputContainer}>
               <div className={SStyle.select}>
-              <select id="clasificacion">
+              <select id="categoria">
                   <option defaultValue="0">Seleccione una categoria </option>
                     <option value="GAO">GAO</option>
                     <option value="Costo-Venta">Costo-Venta</option>
@@ -77,11 +87,9 @@ class App extends Component {
 
               <div className={CatStyle.inputContainer}>
                 <input
-                  id="nombre"
+                  id="subCategoria"
                   className={CatStyle.input}
                   type="text"
-                  placeholder=" "
-                  autocomplete="off"
                 />
                 <div className={CatStyle.cut}></div>
                 <label for="nombre" className={CatStyle.placeholder}>
@@ -90,10 +98,10 @@ class App extends Component {
               </div>
               <br />
               <button
-                onClick={consume_create_category}
                 className={CatStyle.button1}
+                onClick={peticionPost}
               >
-                Guardar/Editar
+                Guardar
               </button>
             </div>
 
@@ -102,29 +110,25 @@ class App extends Component {
                 <thead>
                   <tr>
                     <th> PK </th>
-                    <th> nombre </th>
-                    <th> clasificacion </th>
+                    <th> Categoria</th>
+                    <th> SubCategoria </th>
                     <th> Acciones </th>
                   </tr>
                 </thead>
                 <tbody>
-                  {this.state.data.map((categoria) => {
-                    return (
-                      <tr>
-                        <td> {categoria.pk}</td>
-                        <td> {categoria.nombre_categoria}</td>
-                        <td> {categoria.clasificacion}</td>
-                        <td>
+                  {data.map(categoria =>(
+                    <tr key={categoria.pk}>
+                      <td>{categoria.pk}</td>
+                      <td>{categoria.categoria}</td>
+                      <td>{categoria.subCategoria}</td>
+                      <td>
                           <button className=" btn btn-primary">
                             <FontAwesomeIcon icon={faEdit} />
                           </button>
-                          <button className=" btn btn-danger">
-                            <FontAwesomeIcon icon={faTrashAlt} />
-                          </button>
                         </td>
-                      </tr>
-                    );
-                  })}
+                    </tr>
+                  ))}
+                        
                 </tbody>
               </table>
             </div>
@@ -132,7 +136,6 @@ class App extends Component {
         </header>
       </div>
     );
-  }
 }
 
 export default App;

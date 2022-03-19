@@ -13,7 +13,7 @@ const [data, setData] =useState([]);
 
  const peticionGet_Categoria = () => {
     axios
-      .get("http://localhost:8000/api/v1/categoria/entrada/", {
+      .get("http://localhost:8000/api/v1/categoria/salida/", {
         headers: {
           "Content-Type": "application/json",
           Authorization: "Token c0b7ad49032cc9a0ee03c84115f09ed6dd6aceb8",
@@ -22,6 +22,7 @@ const [data, setData] =useState([]);
       .then((response) => {
         setData(response.data)
       });
+      
   };
 
   useEffect(()=>{
