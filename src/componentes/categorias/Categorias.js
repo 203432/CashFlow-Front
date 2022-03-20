@@ -4,20 +4,60 @@ import axios from "axios";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEdit, faTrashAlt } from "@fortawesome/free-solid-svg-icons";
-import { Modal, ModalBody, ModalFooter, ModelHeader } from "reactstrap";
+import {makeStyles} from '@material-ui/core/styles';
+import {Modal, Button, TextField} from '@material-ui/core';
 import CatStyle from "../recursos.module.css";
 import SStyle from '../recursos.module.css';
 import "./Categorias.css";
-
+const useStyles = makeStyles((theme) => ({
+  modal: {
+    position: 'absolute',
+    width: 400,
+    backgroundColor: theme.palette.background.paper,
+    border: '2px solid #000',
+    boxShadow: theme.shadows[5],
+    padding: theme.spacing(2, 4, 3),
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)'
+  },
+  iconos:{
+    cursor: 'pointer'
+  }, 
+  inputMaterial:{
+    width: '100%'
+  }
+}));
 function App()  {
+const token = 'c0b7ad49032cc9a0ee03c84115f09ed6dd6aceb8';
+const styles= useStyles();
+const [modalEditar, setModalEditar]=useState(false);
 const [data, setData] =useState([]);
+
+const [categoriaSeleccionada, setCategoriaSeleccionada]=useState({
+  categoria: '',
+  subCategoria:''
+})
+
+const abrirCerrarModalEditar=()=>{
+  setModalEditar(!modalEditar);
+}
+
+const seleccionarCategoria=(categoria, caso)=>{
+  localStorage.setItem("categoriaId", categoria.pk);
+  localStorage.setItem("categoria", categoria.categoria);
+  localStorage.setItem("subCategoria", categoria.subCategoria);
+  setCategoriaSeleccionada(categoria);
+  abrirCerrarModalEditar()
+}
+
 
 const peticionGet =  () =>{
    axios
   .get("http://localhost:8000/api/v1/categoria/", {
     headers: {
       "Content-Type": "application/json",
-      Authorization: "Token c0b7ad49032cc9a0ee03c84115f09ed6dd6aceb8",
+      Authorization: "Token "+ token,
     },
   })
   .then((response) => {
@@ -51,7 +91,7 @@ tipoflu = "Entrada"
       .post("http://localhost:8000/api/v1/categoria/", postData, {
         headers: {
           "Content-Type": "application/json",
-          Authorization: "Token c0b7ad49032cc9a0ee03c84115f09ed6dd6aceb8",
+          Authorization: "Token "+ token,
         },
       })
       .then((response) => {
@@ -66,7 +106,81 @@ tipoflu = "Entrada"
   }
   // alert("Hola login");
 };
-    
+
+const peticionPut = () => {
+  var tipoflu=""
+  var cat = document.getElementById("categoriaEdit").value
+  if(cat === "Ingreso"){
+tipoflu = "Entrada"
+  }
+  else{
+    tipoflu = "Salida"
+  }
+  var postData = {
+    categoria: cat,
+    tipo: tipoflu,
+    subCategoria: document.getElementById("subCategoriaEdit").value
+  };
+
+  if (postData.categoria === "" || postData.subCategoria === "") {
+    alert("Todos los campos son requeridos");
+  } else {
+    axios
+      .put("http://localhost:8000/api/v1/categoria/"+localStorage.getItem("categoriaId"), postData, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Token "+ token,
+        },
+      })
+      .then((response) => {
+        console.log(response.data);
+        alert("Se ha agregado exitosamente la categoria");
+        window.location.reload()
+        // redirectLogin();
+      })
+      .catch((error) => {
+        console.log(error.response.data);
+      });
+  }
+};
+  
+const bodyEditar=(
+  <div className={styles.modal}>
+    <h3>Editar Consola</h3>
+    <div className="cDer">
+              <div className={CatStyle.inputContainer}>
+              <div className={SStyle.select}>
+              <select id="categoriaEdit">
+                  <option defaultValue="0">Seleccione una categoria </option>
+                    <option value="GAO">GAO</option>
+                    <option value="Costo-Venta">Costo-Venta</option>
+                    <option value="Ingreso">Ingreso</option>
+                </select>
+              </div>
+              </div>
+              <br />
+
+              <div className={CatStyle.inputContainer}>
+                <input
+                  id="subCategoriaEdit"
+                  className={CatStyle.input}
+                  type="text"
+                />
+                <div className={CatStyle.cut}></div>
+                <label for="nombre" className={CatStyle.placeholder}>
+                  Nombre
+                </label>
+              </div>
+              <br />
+              <button
+                className={CatStyle.button1}
+                onClick={peticionPut}
+              >
+                Guardar
+              </button>
+            </div>
+  </div>
+)
 
     return (
       <div className="App">
@@ -122,7 +236,7 @@ tipoflu = "Entrada"
                       <td>{categoria.categoria}</td>
                       <td>{categoria.subCategoria}</td>
                       <td>
-                          <button className=" btn btn-primary">
+                          <button className=" btn btn-primary" onClick={()=>seleccionarCategoria(categoria)}>
                             <FontAwesomeIcon icon={faEdit} />
                           </button>
                         </td>
@@ -134,6 +248,11 @@ tipoflu = "Entrada"
             </div>
           </div>
         </header>
+        <Modal
+     open={modalEditar}
+     onClose={abrirCerrarModalEditar}>
+        {bodyEditar}
+     </Modal>
       </div>
     );
 }

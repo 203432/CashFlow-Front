@@ -9,6 +9,7 @@ import SStyle from '../recursos.module.css'
 import "./Flujo.css"
 
 function App() {
+const token = 'c0b7ad49032cc9a0ee03c84115f09ed6dd6aceb8';
 const [data, setData] =useState([]);
 
  const peticionGet_Categoria = () => {
@@ -16,7 +17,7 @@ const [data, setData] =useState([]);
       .get("http://localhost:8000/api/v1/categoria/entrada/", {
         headers: {
           "Content-Type": "application/json",
-          Authorization: "Token c0b7ad49032cc9a0ee03c84115f09ed6dd6aceb8",
+          Authorization: "Token "+ token,
         },
       })
       .then((response) => {

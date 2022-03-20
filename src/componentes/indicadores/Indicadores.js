@@ -3,6 +3,8 @@ import axios from "axios";
 import IndiaStyle from '../recursos.module.css'
 
 function App() {
+  const token = 'c0b7ad49032cc9a0ee03c84115f09ed6dd6aceb8';
+  var mes = "";
   const create_Indicador_cobrar = () => {
     var postData = {
       indicador: "Cobrar",
@@ -17,11 +19,14 @@ function App() {
         .post("http://localhost:8000/api/v1/indicadores/", postData, {
           headers: {
             "Content-Type": "application/json",
-            Authorization: "Token c0b7ad49032cc9a0ee03c84115f09ed6dd6aceb8",
+            Authorization: "Token "+ token,
           },
         })
         .then((response) => {
           console.log(response.data);
+          mes = response.data.only_month;
+          console.log(response.data);
+          console.log(mes);
           alert("Se ha agregado exitosamente la cuenta por cobrar");
           // redirectLogin();
         })
@@ -46,11 +51,13 @@ function App() {
         .post("http://localhost:8000/api/v1/indicadores/", postData, {
           headers: {
             "Content-Type": "application/json",
-            Authorization: "Token c0b7ad49032cc9a0ee03c84115f09ed6dd6aceb8",
+            Authorization: "Token "+ token,
           },
         })
         .then((response) => {
+          mes = response.data.only_month;
           console.log(response.data);
+          console.log(mes);
           alert("Se ha agregado exitosamente la cuenta por pagar");
           // redirectLogin();
         })
@@ -75,11 +82,14 @@ function App() {
         .post("http://localhost:8000/api/v1/indicadores/", postData, {
           headers: {
             "Content-Type": "application/json",
-            Authorization: "Token c0b7ad49032cc9a0ee03c84115f09ed6dd6aceb8",
+            Authorization: "Token "+ token,
           },
         })
         .then((response) => {
           console.log(response.data);
+          mes = response.data.only_month;
+          console.log(response.data);
+          console.log(mes);
           alert("Se ha agregado exitosamente la cuenta pendiente al banco");
           // redirectLogin();
         })
