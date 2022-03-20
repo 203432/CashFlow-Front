@@ -1,5 +1,6 @@
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
+import CategoriaStyle from "../Recursos/Home.module.css";
 
 function App() {
     const create_Indicador_cobrar = () => {
@@ -16,7 +17,7 @@ function App() {
             .post("http://localhost:8000/api/v1/indicadores/", postData, {
               headers: {
                 "Content-Type": "application/json",
-                Authorization: "Token c0b7ad49032cc9a0ee03c84115f09ed6dd6aceb8",
+                Authorization: "Token 6f5c41a6b6ad4e6adaf64769e8ecbdc97a411200",
               },
             })
             .then((response) => {
@@ -45,7 +46,7 @@ function App() {
             .post("http://localhost:8000/api/v1/indicadores/", postData, {
               headers: {
                 "Content-Type": "application/json",
-                Authorization: "Token c0b7ad49032cc9a0ee03c84115f09ed6dd6aceb8",
+                Authorization: "Token 6f5c41a6b6ad4e6adaf64769e8ecbdc97a411200",
               },
             })
             .then((response) => {
@@ -74,7 +75,7 @@ function App() {
             .post("http://localhost:8000/api/v1/indicadores/", postData, {
               headers: {
                 "Content-Type": "application/json",
-                Authorization: "Token c0b7ad49032cc9a0ee03c84115f09ed6dd6aceb8",
+                Authorization: "Token 6f5c41a6b6ad4e6adaf64769e8ecbdc97a411200",
               },
             })
             .then((response) => {
@@ -98,7 +99,7 @@ function App() {
           <input type="text" id="razon_cobra" /> 
           <label>Monto</label>
           <input type="text" id="monto_cobra" />
-          <button onClick={create_Indicador_cobrar}>Guardar </button> 
+          <button className={CategoriaStyle.auxbutton} onClick={create_Indicador_cobrar}>Guardar </button> 
           <br/><br/><br/>
          <h1> Cuentas por pagar</h1>
           <label>No. Semana</label>
@@ -107,7 +108,7 @@ function App() {
           <input type="text" id="razon_pagar" /> 
           <label>Monto</label>
           <input type="text" id="monto_pagar" />
-          <button onClick={create_Indicador_pagar}>Guardar </button> 
+          <button className={CategoriaStyle.auxbutton} onClick={create_Indicador_pagar}>Guardar </button> 
           <br/><br/><br/>
           <h1> Bancos</h1>
           <label>No. Semana</label>
@@ -116,7 +117,7 @@ function App() {
           <input type="text" id="razon_banco" /> 
           <label>Monto</label>
           <input type="text" id="monto_banco" />
-          <button onClick={create_Indicador_Banco}>Guardar </button>  
+          <button className={CategoriaStyle.auxbutton} onClick={create_Indicador_Banco}>Guardar </button>  
       </header>
     </div>
   );

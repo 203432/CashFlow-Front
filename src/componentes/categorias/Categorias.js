@@ -1,10 +1,11 @@
 import React, { Component } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
-import "bootstrap/dist/css/bootstrap.min.css";
+// import "bootstrap/dist/css/bootstrap.min.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEdit, faTrashAlt } from "@fortawesome/free-solid-svg-icons";
 import { Modal, ModalBody, ModalFooter, ModelHeader } from "reactstrap";
+import CategoriaStyle from "../Recursos/Home.module.css"
 
 class App extends Component {
   state = {
@@ -16,7 +17,7 @@ class App extends Component {
       .get("http://localhost:8000/api/v1/categoria/", {
         headers: {
           "Content-Type": "application/json",
-          Authorization: "Token c0b7ad49032cc9a0ee03c84115f09ed6dd6aceb8",
+          Authorization: "Token 6f5c41a6b6ad4e6adaf64769e8ecbdc97a411200",
         },
       })
       .then((response) => {
@@ -42,7 +43,7 @@ class App extends Component {
           .post("http://localhost:8000/api/v1/categoria/", postData, {
             headers: {
               "Content-Type": "application/json",
-              Authorization: "Token c0b7ad49032cc9a0ee03c84115f09ed6dd6aceb8",
+              Authorization: "Token 6f5c41a6b6ad4e6adaf64769e8ecbdc97a411200",
             },
           })
           .then((response) => {
@@ -61,7 +62,7 @@ class App extends Component {
           <input id="clasificacion" placeholder="Clasificacion" />
           <br />
           <input id="nombre" placeholder="nombre categoria" />
-          <button onClick={consume_create_category}>Guardar/Editar</button>
+          <button className={CategoriaStyle.auxbutton} onClick={consume_create_category}>Guardar/Editar</button>
 
           <table className="table">
             <thead>
@@ -76,12 +77,15 @@ class App extends Component {
               {this.state.data.map((categoria) => {
                 return (
                   <tr>
-                    <td> {categoria.pk}</td>
-                    <td> {categoria.nombre_categoria}</td>
-                    <td> {categoria.clasificacion}</td>
-                    <td> 
-                      <button className=" btn btn-primary"><FontAwesomeIcon icon={faEdit}/></button>
-                      <button className=" btn btn-danger"><FontAwesomeIcon icon={faTrashAlt}/></button>
+                    <td> <label className="is-black">{categoria.pk}</label></td>
+                    <td> <label className="is-black">{categoria.nombre_categoria}</label></td>
+                    <td> <label className="is-black">{categoria.clasificacion}</label></td>
+                    <td>
+                      <button className={"btn btn-primary"}>
+                        <FontAwesomeIcon icon={faEdit}/>
+                      </button>
+                      <button className="btn btn-danger">
+                        <FontAwesomeIcon icon={faTrashAlt} /></button>
                     </td>
                   </tr>
                 );

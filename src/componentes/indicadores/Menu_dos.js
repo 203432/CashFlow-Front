@@ -1,4 +1,5 @@
 import { useParams, useNavigate } from "react-router-dom";
+import CategoriaStyle from "../Recursos/Home.module.css";
 
 function App() {
   const navigate = useNavigate();
@@ -12,8 +13,8 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <button onClick={redirectRegistro}>Registro de informacion</button>
-        <button onClick={redirectReporte}>Reportes</button>
+        <button className={CategoriaStyle.auxbutton} onClick={redirectRegistro}>Registro de informacion</button>
+        <button className={CategoriaStyle.auxbutton} onClick={redirectReporte}>Reportes</button>
       </header>
     </div>
   );

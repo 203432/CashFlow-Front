@@ -1,11 +1,12 @@
 import React, { Component } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
-import "bootstrap/dist/css/bootstrap.min.css";
+// import "bootstrap/dist/css/bootstrap.min.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEdit, faTrashAlt } from "@fortawesome/free-solid-svg-icons";
 import { Modal, ModalBody, ModalFooter, ModelHeader } from "reactstrap";
 import SelectInput from './SelectInput'
+import CategoriaStyle from "../Recursos/Home.module.css";
 
 class App extends Component {
   state = {
@@ -16,7 +17,7 @@ class App extends Component {
       .get("http://localhost:8000/api/v1/flujo/", {
         headers: {
           "Content-Type": "application/json",
-          Authorization: "Token c0b7ad49032cc9a0ee03c84115f09ed6dd6aceb8",
+          Authorization: "Token 6f5c41a6b6ad4e6adaf64769e8ecbdc97a411200",
         },
       })
       .then((response) => {
@@ -59,7 +60,7 @@ class App extends Component {
           .post("http://localhost:8000/api/v1/flujo/", postData, {
             headers: {
               "Content-Type": "application/json",
-              Authorization: "Token c0b7ad49032cc9a0ee03c84115f09ed6dd6aceb8",
+              Authorization: "Token 6f5c41a6b6ad4e6adaf64769e8ecbdc97a411200",
             },
           })
           .then((response) => {
@@ -117,7 +118,7 @@ class App extends Component {
           <br />
           <input id="descripcion" placeholder="Descripcion" />
           <br />
-          <button onClick={consume_create_flujo}>Guardar/Editar</button>
+          <button className={CategoriaStyle.auxbutton} onClick={consume_create_flujo}>Guardar/Editar</button>
           <SelectInput/>
           <br/>
           <br/>
