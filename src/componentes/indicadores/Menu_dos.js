@@ -1,4 +1,6 @@
 import { useParams, useNavigate } from "react-router-dom";
+import './indi.css'
+import MenuStyle from '../recursos.module.css'
 
 function App() {
   const navigate = useNavigate();
@@ -12,8 +14,10 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <button onClick={redirectRegistro}>Registro de informacion</button>
-        <button onClick={redirectReporte}>Reportes</button>
+        <div className="menu">
+        <button onClick={redirectRegistro} className={MenuStyle.button1}>Registro de informacion</button>
+        <button onClick={redirectReporte}className={MenuStyle.button1}>Reportes</button>
+        </div>
       </header>
     </div>
   );
