@@ -2,12 +2,12 @@ import React from 'react';
 import Categorias from './componentes/categorias/Categorias'
 import FlujosEfectivo from './componentes/flujosEfectivo/FlujoEfectivo'
 import Indicadores from './componentes/indicadores/Indicadores'
-import Menu_dos from './componentes/indicadores/Menu_dos'
+import MenuDos from './componentes/indicadores/MenuDos'
 import Home from './componentes/home/Home'
-import Reporte from './componentes/reporte/Reporte'
+import Reporte from './componentes/reporte/Reportes'
 import ReactDOM from 'react-dom';
 import {BrowserRouter, Route, Routes} from 'react-router-dom'; 
-import App from './App';
+import './App.css';
 import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
@@ -17,7 +17,7 @@ ReactDOM.render(
     <Route path ='/' element={<Home/>} />
      <Route path ='/categoria' element={<Categorias/>} />
      <Route path ='/flujo' element={<FlujosEfectivo/>} />
-     <Route path ='/indicadores' element={<Menu_dos/>} />
+     <Route path ='/indicadores' element={<MenuDos/>} />
      <Route path ='/registro' element={<Indicadores/>} />
      <Route path ='/reporte' element={<Reporte/>} />
   </Routes>

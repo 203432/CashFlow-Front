@@ -1,16 +1,42 @@
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import IndiaStyle from '../recursos.module.css'
+import { useState } from "react";
 
 function App() {
   const token = 'c0b7ad49032cc9a0ee03c84115f09ed6dd6aceb8';
+  const[data, setData] = useState(0)
   var mes = "";
+
+
   const create_Indicador_cobrar = () => {
+    var sem1 = 0
+    var sem2 = 0
+    var sem3 = 0
+    var sem4 = 0
+    var semana = document.getElementById("semana_cobra").value
+    if(semana === "1"){
+      sem1 = document.getElementById("monto_cobra").value
+    }
+    if(semana === "2"){
+      sem2 = document.getElementById("monto_cobra").value
+    }
+    if(semana === "3"){
+      sem3 = document.getElementById("monto_cobra").value
+    }
+    if(semana === "4"){
+      sem4 = document.getElementById("monto_cobra").value
+      console.log(sem4)
+    }
     var postData = {
       indicador: "Cobrar",
-      numSemana: document.getElementById("week_cobrar").value,
+      numSemana: semana,
       Razon: document.getElementById("razon_cobra").value,
       monto: document.getElementById("monto_cobra").value,
+      semana1: parseInt(sem1),
+      semana2: parseInt(sem2),
+      semana3: parseInt(sem3),
+      semana4: parseInt(sem4),
     };
     if (postData.numSemana === "" || postData.Razon === "" || postData.monto === "") {
       alert("Todos los campos son requeridos");
@@ -23,26 +49,124 @@ function App() {
           },
         })
         .then((response) => {
-          console.log(response.data);
           mes = response.data.only_month;
-          console.log(response.data);
           console.log(mes);
           alert("Se ha agregado exitosamente la cuenta por cobrar");
           // redirectLogin();
         })
         .catch((error) => {
-          console.log(error.response.data);
+          console.log(error.response.data)
+          peticionGet()
         });
     }
     // alert("Hola login");
   };
 
+  const peticionGet =  () =>{
+    var razon = document.getElementById("razon_cobra").value
+    var razonarr = []
+    axios
+   .get("http://localhost:8000/api/v1/indicadores/", {
+     headers: {
+       "Content-Type": "application/json",
+       Authorization: "Token "+ token,
+     },
+   })
+   .then((response) => {
+    var size = response.data.length;
+    for (var i = 0; i < size ; i++) {
+       if(razon === response.data[i].Razon){
+         razonarr = response.data[i]
+        console.log(razonarr)
+       }
+    }
+    setData(razonarr)
+     peticionPut()
+   });
+ } 
+
+ const peticionPut = () => {
+  var sem1 = data.semana1
+  var sem2 = data.semana2
+  var sem3 = data.semana3
+  var sem4 = data.semana4
+  var semana = document.getElementById("semana_cobra").value
+  if(semana === "1"){
+    sem1 = document.getElementById("monto_cobra").value
+  }
+  if(semana === "2"){
+    sem2 = document.getElementById("monto_cobra").value
+  }
+  if(semana === "3"){
+    sem3 = document.getElementById("monto_cobra").value
+  }
+  if(semana === "4"){
+    sem4 = document.getElementById("monto_cobra").value
+    console.log(sem4)
+  }
+  var postData = {
+    indicador: "Cobrar",
+    numSemana: semana,
+    Razon: document.getElementById("razon_cobra").value,
+    monto: document.getElementById("monto_cobra").value,
+    semana1: parseInt(sem1),
+    semana2: parseInt(sem2),
+    semana3: parseInt(sem3),
+    semana4: parseInt(sem4),
+  };
+    axios
+      .put("http://localhost:8000/api/v1/indicadores/"+data.pk, postData, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Token "+ token,
+        },
+      })
+      .then((response) => {
+        console.log(response.data);
+        alert("Se ha agregado el cobro pendiente");
+        window.location.reload()
+        // redirectLogin();
+      })
+      .catch((error) => {
+        console.log(error.response.data);
+      });
+  
+};
+  
+
+
+  //Cuentas por pagar
+  //Aqui empieza
   const create_Indicador_pagar = () => {
+    var sem1 = 0
+    var sem2 = 0
+    var sem3 = 0
+    var sem4 = 0
+     
+    var semana = document.getElementById("semana_pagar").value
+    if(semana === "1"){
+      sem1 = document.getElementById("monto_pagar").value
+    }
+    if(semana === "2"){
+      sem2 = document.getElementById("monto_pagar").value
+    }
+    if(semana === "3"){
+      sem3 = document.getElementById("monto_pagar").value
+    }
+    if(semana === "4"){
+      sem4 = document.getElementById("monto_pagar").value
+      console.log(sem4)
+    }
+
     var postData = {
       indicador: "Pagar",
-      numSemana: document.getElementById("week_pagar").value,
+      numSemana: semana,
       Razon: document.getElementById("razon_pagar").value,
       monto: document.getElementById("monto_pagar").value,
+      semana1: parseInt(sem1),
+      semana2: parseInt(sem2),
+      semana3: parseInt(sem3),
+      semana4: parseInt(sem4),
     };
     if (postData.numSemana === "" || postData.Razon === "" || postData.monto === "") {
       alert("Todos los campos son requeridos");
@@ -62,18 +186,118 @@ function App() {
           // redirectLogin();
         })
         .catch((error) => {
-          console.log(error.response.data);
+          console.log(error.response.data)
+          peticionGetPagar()
         });
     }
     // alert("Hola login");
   };
 
+  const peticionGetPagar =  () =>{
+    var razon = document.getElementById("razon_pagar").value
+    var razonarr = []
+    axios
+   .get("http://localhost:8000/api/v1/indicadores/", {
+     headers: {
+       "Content-Type": "application/json",
+       Authorization: "Token "+ token,
+     },
+   })
+   .then((response) => {
+    var size = response.data.length;
+    for (var i = 0; i < size ; i++) {
+       if(razon === response.data[i].Razon){
+         razonarr = response.data[i]
+        console.log(razonarr)
+       }
+    }
+    setData(razonarr)
+    peticionPutPagar()
+   });
+ } 
+
+ const peticionPutPagar = () => {
+  var sem1 = data.semana1
+  var sem2 = data.semana2
+  var sem3 = data.semana3
+  var sem4 = data.semana4
+  var semana = document.getElementById("semana_pagar").value
+  if(semana === "1"){
+    sem1 = document.getElementById("monto_pagar").value
+  }
+  if(semana === "2"){
+    sem2 = document.getElementById("monto_pagar").value
+  }
+  if(semana === "3"){
+    sem3 = document.getElementById("monto_pagar").value
+  }
+  if(semana === "4"){
+    sem4 = document.getElementById("monto_pagar").value
+    console.log(sem4)
+  }
+  var postData = {
+    indicador: "Pagar",
+    numSemana: semana,
+    Razon: document.getElementById("razon_pagar").value,
+    monto: document.getElementById("monto_pagar").value,
+    semana1: parseInt(sem1),
+    semana2: parseInt(sem2),
+    semana3: parseInt(sem3),
+    semana4: parseInt(sem4),
+  };
+    axios
+      .put("http://localhost:8000/api/v1/indicadores/"+data.pk, postData, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Token "+ token,
+        },
+      })
+      .then((response) => {
+        console.log(response.data);
+        alert("Se ha agregado el pago ");
+        window.location.reload()
+        // redirectLogin();
+      })
+      .catch((error) => {
+        console.log(error.response.data);
+      });
+  
+};
+
+
+
+ 
+
+  //Cuentas por  Banco
+  //Aqui empieza
   const create_Indicador_Banco = () => {
+    var sem1 = 0
+    var sem2 = 0
+    var sem3 = 0
+    var sem4 = 0
+    var semana = document.getElementById("semana_banco").value
+    if(semana === "1"){
+      sem1 = document.getElementById("monto_banco").value
+    }
+    if(semana === "2"){
+      sem2 = document.getElementById("monto_banco").value
+    }
+    if(semana === "3"){
+      sem3 = document.getElementById("monto_banco").value
+    }
+    if(semana === "4"){
+      sem4 = document.getElementById("monto_banco").value
+      console.log(sem4)
+    }
     var postData = {
       indicador: "Banco",
-      numSemana: document.getElementById("week_banco").value,
+      numSemana: semana,
       Razon: document.getElementById("razon_banco").value,
       monto: document.getElementById("monto_banco").value,
+      semana1: parseInt(sem1),
+      semana2: parseInt(sem2),
+      semana3: parseInt(sem3),
+      semana4: parseInt(sem4),
     };
     if (postData.numSemana === "" || postData.Razon === "" || postData.monto === "") {
       alert("Todos los campos son requeridos");
@@ -95,10 +319,87 @@ function App() {
         })
         .catch((error) => {
           console.log(error.response.data);
+          peticionGetBanco()
+         
         });
     }
     // alert("Hola login");
   };
+
+  
+
+  const peticionGetBanco =  () =>{
+    var razon = document.getElementById("razon_banco").value
+    var razonarr = []
+    axios
+   .get("http://localhost:8000/api/v1/indicadores/", {
+     headers: {
+       "Content-Type": "application/json",
+       Authorization: "Token "+ token,
+     },
+   })
+   .then((response) => {
+    var size = response.data.length;
+    for (var i = 0; i < size ; i++) {
+       if(razon === response.data[i].Razon){
+         razonarr = response.data[i]
+        console.log(razonarr)
+       }
+    }
+    setData(razonarr)
+    peticionPutBanco()
+   });
+ } 
+
+ const peticionPutBanco= () => {
+  var sem1 = data.semana1
+  var sem2 = data.semana2
+  var sem3 = data.semana3
+  var sem4 = data.semana4
+  var semana = document.getElementById("semana_banco").value
+  if(semana === "1"){
+    sem1 = document.getElementById("monto_banco").value
+  }
+  if(semana === "2"){
+    sem2 = document.getElementById("monto_banco").value
+  }
+  if(semana === "3"){
+    sem3 = document.getElementById("monto_banco").value
+  }
+  if(semana === "4"){
+    sem4 = document.getElementById("monto_banco").value
+    console.log(sem4)
+  }
+  var postData = {
+    indicador: "Banco",
+    numSemana: semana,
+    Razon: document.getElementById("razon_banco").value,
+    monto: document.getElementById("monto_banco").value,
+    semana1: parseInt(sem1),
+    semana2: parseInt(sem2),
+    semana3: parseInt(sem3),
+    semana4: parseInt(sem4),
+  };
+    axios
+      .put("http://localhost:8000/api/v1/indicadores/"+data.pk, postData, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Token "+ token,
+        },
+      })
+      .then((response) => {
+        console.log(response.data);
+        alert("Se ha agregado el banco ");
+        window.location.reload()
+        // redirectLogin();
+      })
+      .catch((error) => {
+        console.log(error.response.data);
+      });
+  
+};
+
+
   return (
     <div className="App">
       <div className="containerI">
@@ -106,9 +407,13 @@ function App() {
         <header className="App-header">
           <h1> Cuentas por cobrar</h1>
           <div className={IndiaStyle.inputContainer}>
-            <input id="week_cobrar" className={IndiaStyle.input} type="text" placeholder=" " />
-            <div className={IndiaStyle.cut}></div>
-            <label for="week_cobrar" className={IndiaStyle.placeholder}>No.Semana</label>
+          <select id="semana_cobra">
+              <option defaultValue="0">Seleccione la semana </option>
+                <option value = "1" >  1 </option>
+                <option value = "2" > 2 </option>
+                <option value = "3" > 3 </option>
+                <option value = "4" > 4 </option>
+            </select>
           </div>
           <div className={IndiaStyle.inputContainer}>
             <input id="razon_cobra" className={IndiaStyle.input} type="text" placeholder=" " />
@@ -126,9 +431,13 @@ function App() {
 
           <h1> Cuentas por pagar</h1>
           <div className={IndiaStyle.inputContainer}>
-            <input id="week_pagar" className={IndiaStyle.input} type="text" placeholder=" " />
-            <div className={IndiaStyle.cut}></div>
-            <label for="week_pagar" className={IndiaStyle.placeholder}>No.Semana</label>
+          <select id="semana_pagar">
+              <option defaultValue="0">Seleccione la semana </option>
+                <option value = "1" >  1 </option>
+                <option value = "2" > 2 </option>
+                <option value = "3" > 3 </option>
+                <option value = "4" > 4 </option>
+            </select>
           </div>
           <div className={IndiaStyle.inputContainer}>
             <input id="razon_pagar" className={IndiaStyle.input} type="text" placeholder=" " />
@@ -152,9 +461,13 @@ function App() {
 
           <h1> Bancos</h1>
           <div className={IndiaStyle.inputContainer}>
-            <input id="week_banco" className={IndiaStyle.input} type="text" placeholder=" " />
-            <div className={IndiaStyle.cut}></div>
-            <label for="week_banco" className={IndiaStyle.placeholder}>No.Semana</label>
+          <select id="semana_banco">
+              <option defaultValue="0">Seleccione la semana </option>
+                <option value = "1" >  1 </option>
+                <option value = "2" > 2 </option>
+                <option value = "3" > 3 </option>
+                <option value = "4" > 4 </option>
+            </select>
           </div>
           <div className={IndiaStyle.inputContainer}>
             <input id="razon_banco" className={IndiaStyle.input} type="text" placeholder=" " />
