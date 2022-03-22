@@ -4,7 +4,7 @@ import IndiaStyle from '../recursos.module.css'
 import { useState } from "react";
 
 function App() {
-  const token = 'ec96ebe02a2e617a27cc8fff585c5a84e62b809f';
+  const token = localStorage.getItem("token");
   const[data, setData] = useState(0)
   var mes = "";
 

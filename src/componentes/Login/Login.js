@@ -3,6 +3,8 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom'
 
 const Login = () => {
+    localStorage.removeItem('token')
+    localStorage.removeItem('user_id')
     const navigate = useNavigate();
     const loginUser = () => {
         var postData = {

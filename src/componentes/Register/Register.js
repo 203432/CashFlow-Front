@@ -96,6 +96,8 @@ const Register = () => {
         <div>Register
             <form>
           <div > 
+
+            
             <input class="input is-info" type="text" autocomplete="off" id = 'user' required />
             <label>Usuario</label> 
           </div>

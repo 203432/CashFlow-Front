@@ -29,7 +29,7 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 function App()  {
-const token = 'ec96ebe02a2e617a27cc8fff585c5a84e62b809f';
+const token = localStorage.getItem("token");
 const styles= useStyles();
 const [modalEditar, setModalEditar]=useState(false);
 const [data, setData] =useState([]);

@@ -5,7 +5,7 @@ import axios from "axios";
 function App() {
   var suma = 0;
   var totalCobrar = 0;
-  const token = "c0b7ad49032cc9a0ee03c84115f09ed6dd6aceb8";
+  const token = localStorage.getItem("token");
   //States para la tabla de cuentas por cobrar
   const [data, setData] = useState([]);
   const [totalCobSem1, setTotalCobSem1] = useState(0);
