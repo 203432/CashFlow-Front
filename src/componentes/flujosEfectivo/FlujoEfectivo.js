@@ -11,7 +11,7 @@ import FlujoStyle from "../recursos.module.css";
 import "./Flujo.css";
 
 function App() {
-  const token = 'c0b7ad49032cc9a0ee03c84115f09ed6dd6aceb8';
+  const token = 'ec96ebe02a2e617a27cc8fff585c5a84e62b809f';
   const [data, setData] = useState([]);
   const [tipo, setTipo] = useState("Entrada");
   const [cat, setCat]=useState()

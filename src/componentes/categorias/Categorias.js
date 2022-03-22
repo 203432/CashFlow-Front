@@ -29,7 +29,7 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 function App()  {
-const token = 'c0b7ad49032cc9a0ee03c84115f09ed6dd6aceb8';
+const token = 'ec96ebe02a2e617a27cc8fff585c5a84e62b809f';
 const styles= useStyles();
 const [modalEditar, setModalEditar]=useState(false);
 const [data, setData] =useState([]);

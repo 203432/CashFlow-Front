@@ -9,17 +9,23 @@ import ReactDOM from 'react-dom';
 import {BrowserRouter, Route, Routes} from 'react-router-dom'; 
 import './App.css';
 import reportWebVitals from './reportWebVitals';
+import Login from './componentes/Login/Login';
+import Register from './componentes/Register/Register';
+import AsignarRol from './componentes/Register/AsignarRol';
 
 ReactDOM.render(
   <React.StrictMode>
      <BrowserRouter>
   <Routes>
-    <Route path ='/' element={<Home/>} />
+  <Route path ='/' element={<Login/>} />
+    <Route path ='/Home' element={<Home/>} />
      <Route path ='/categoria' element={<Categorias/>} />
      <Route path ='/flujo' element={<FlujosEfectivo/>} />
      <Route path ='/indicadores' element={<MenuDos/>} />
      <Route path ='/registro' element={<Indicadores/>} />
      <Route path ='/reporte' element={<Reporte/>} />
+     <Route path ='/userregister' element={<Register/>} />
+     <Route path ='/rol' element={<AsignarRol/>} />
   </Routes>
 
   </BrowserRouter>,
