@@ -1,6 +1,9 @@
 import React from 'react'
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom'
+import "./Login.css"
+import LoginStyle from "../recursos.module.css";
+import Llogin from "./1LOGIN.png"
 
 const Login = () => {
     localStorage.removeItem('token')
@@ -20,7 +23,6 @@ const Login = () => {
                 localStorage.setItem('token', response.data.token)
                 localStorage.setItem('user_id', response.data.user_id)
                 //Redireccionamiento a el profile, con el id en la url
-                alert('SE PUDOOOOO')
                 navigate("/Home")
             }).catch(
                 (error) => {
@@ -31,28 +33,34 @@ const Login = () => {
             )
     }
     return (
-        <div>
-            <form>
+        <div className="App">
 
-                <div >
+            <header className="App-header">
+                <div className='form'>
 
-                    <input class="input is-info" type="text" autocomplete="off" id='userL' required />
-                    <label>User</label>
+                    <div className='centrar'>
+                        <img src={Llogin} className="logoLogin" />
+                        <div className={LoginStyle.inputContainer}>
+                            <input id='userL' className={LoginStyle.input} placeholder=" " autocomplete="off" type="text" />
+                            <div className={LoginStyle.cut2}></div>
+                            <label for='userL' className={LoginStyle.placeholder}>
+                                Usuario
+                            </label>
+                        </div>
+
+                        <div className={LoginStyle.inputContainer}>
+                            <input id='passL' className={LoginStyle.input} placeholder=" " autocomplete="off" type="password" />
+                            <div className={LoginStyle.cut2}></div>
+                            <label for='passL' className={LoginStyle.placeholder}>
+                                Contraseña
+                            </label>
+                        </div>
+                        <br />
+                        <button onClick={loginUser} className={LoginStyle.button1}>Login</button>
+                    </div>
                 </div>
+            </header>
 
-                <br /><br />
-
-                <div >
-
-                    <input class="input is-info" type="password" id='passL' required />
-                    <label> Password</label>
-                </div>
-                
-
-            </form>
-            <header >
-            <button onClick={loginUser}><span>Entrar</span></button>
-          </header>
         </div>
     )
 }

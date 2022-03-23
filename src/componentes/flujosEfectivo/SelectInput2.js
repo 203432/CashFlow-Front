@@ -35,7 +35,7 @@ const [data, setData] =useState([]);
         <div className="margin">
           <div className={SStyle.select}>
             <select id="categoria">
-              <option defaultValue="0">Seleccione una categoria </option>
+              <option className='opcion' defaultValue="0">Seleccione una categoria </option>
               {data.map((el) => (
                 <option key={el.pk} value={el.pk}>
                   {el.subCategoria}

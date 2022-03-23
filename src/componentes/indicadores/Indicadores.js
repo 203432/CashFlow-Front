@@ -409,10 +409,10 @@ function App() {
           <div className={IndiaStyle.inputContainer}>
           <select id="semana_cobra">
               <option defaultValue="0">Seleccione la semana </option>
-                <option value = "1" >  1 </option>
-                <option value = "2" > 2 </option>
-                <option value = "3" > 3 </option>
-                <option value = "4" > 4 </option>
+                <option className='opcion' value = "1" >  1 </option>
+                <option className='opcion' value = "2" > 2 </option>
+                <option className='opcion' value = "3" > 3 </option>
+                <option className='opcion' value = "4" > 4 </option>
             </select>
           </div>
           <div className={IndiaStyle.inputContainer}>

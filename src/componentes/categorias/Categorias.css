@@ -1,9 +1,8 @@
 .container2{
     text-align: center;
-    margin-left: auto;
-    margin-right: 400px;
-    margin-top: 10px;
-    margin-bottom: 30px;
+    
+    margin-top: auto;
+    margin-bottom: auto;
     display: grid;
     grid-template-columns: 40% 60%;
 }
@@ -20,4 +19,12 @@
     margin-left: 100px;
 }
 
+.form3 {
+    background-color: #15172b;
+    border-radius: 20px;
+    box-sizing: border-box;
+    height: 550px;
+    padding: 20px;
+    width: 320px;
+}
 

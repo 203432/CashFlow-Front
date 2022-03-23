@@ -14,7 +14,7 @@ function App() {
   const token = localStorage.getItem("token");
   const [data, setData] = useState([]);
   const [tipo, setTipo] = useState("Entrada");
-  const [cat, setCat]=useState()
+  const [cat, setCat] = useState()
   const [categoria, setCategoria] = useState("");
   const cambioRadio = (e) => {
     setTipo(e.target.value);
@@ -24,7 +24,7 @@ function App() {
       .get("http://localhost:8000/api/v1/flujo/", {
         headers: {
           "Content-Type": "application/json",
-          Authorization: "Token "+ token,
+          Authorization: "Token " + token,
         },
       })
       .then((response) => {
@@ -63,7 +63,7 @@ function App() {
         .post("http://localhost:8000/api/v1/flujo/", postData, {
           headers: {
             "Content-Type": "application/json",
-            Authorization: "Token "+ token,
+            Authorization: "Token " + token,
           },
         })
         .then((response) => {
@@ -136,6 +136,7 @@ function App() {
               className={FlujoStyle.input}
               type="text"
               placeholder=" "
+              autocomplete="off"
             />
             <div className={FlujoStyle.cut}></div>
             <label for="descripcion" className={FlujoStyle.placeholder}>
@@ -149,6 +150,7 @@ function App() {
               className={FlujoStyle.input}
               type="text"
               placeholder=" "
+              autocomplete="off"
             />
             <div className={FlujoStyle.cut}></div>
             <label for="cantidad" className={FlujoStyle.placeholder}>
