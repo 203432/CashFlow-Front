@@ -126,7 +126,6 @@ function App() {
                 onChange={cambioRadio}
               />
               <label htmlFor="salida">Salida</label>
-              <p>El radio button seleccionado es: {tipo}</p>
             </form>
           </div>
           {/* <input id="descripcion" placeholder="Descripcion" /> */}
