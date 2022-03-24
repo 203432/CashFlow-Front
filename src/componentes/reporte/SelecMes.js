@@ -1,5 +1,7 @@
 import { useParams, useNavigate } from "react-router-dom";
 import React, { useEffect, useState } from "react";
+import "./Vistas.css"
+import VistasStyle from '../recursos.module.css'
 
 function App() {
   const navigate = useNavigate();
@@ -34,6 +36,8 @@ function App() {
       <h1></h1>
       <br />
       <br />
+      <div className="menu2">
+        <div className={VistasStyle.select}>
         <select id="mesaux" onChange={cambiarMes}>
           <option defaultValue="0">Elija el mes que quiere revisar</option>
           <option value="1" >Enero</option>
@@ -49,9 +53,11 @@ function App() {
           <option value="11" >Noviembre</option>
           <option value="12" >Diciembre</option>
         </select>
-        <p>Reportes de:</p>
-        <p> {mes} </p>
-        <button id="mesaux"onClick={mostrarReporte}>Ir</button>
+        </div>
+        {/* <p>Reportes de:</p>
+        <p> {mes} </p> */}
+        <button id="mesaux"onClick={mostrarReporte} className={VistasStyle.button1}>Ir</button>
+        </div>
         
 
 

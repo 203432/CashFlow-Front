@@ -6,6 +6,7 @@ import ReporteB from "./ReportesMens/ReporteB";
 import ReporteFE from "./ReportesMens/ReporteFE";
 import ReporteFS from "./ReportesMens/ReporteFS";
 
+
 function App() {
   const navigate = useNavigate();
   var suma = 0;
@@ -26,24 +27,29 @@ function App() {
   };
 
 
-  const mostrarReporte = () =>{
+  const mostrarReporte = () => {
     var mes = document.getElementById("mesaux").value;
     localStorage.setItem("mes", mes)
     navigate("/mes")
-    
+
   }
 
   return (
     <div className="App">
       <header className="App-header">
+            <ReporteC />
+            <ReporteP />
+            <ReporteFE />
+            <ReporteFS />
+            <ReporteB />
+        
+      
+        <button  type='primary'>
+          PDF OWO
+        </button>
+       
 
-      <ReporteC/>
-      <ReporteP/>
-      <ReporteFE/>
-      <ReporteFS/>
-      <ReporteB/>
-
-      <hr/> <hr/> <hr/>
+        <hr /> <hr /> <hr />
       </header>
     </div>
   );
