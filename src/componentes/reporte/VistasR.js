@@ -7,6 +7,7 @@ import ReporteFE from "./ReportesMens/ReporteFE";
 import ReporteFS from "./ReportesMens/ReporteFS";
 
 
+
 function App() {
   const navigate = useNavigate();
   var suma = 0;
@@ -42,13 +43,6 @@ function App() {
             <ReporteFE />
             <ReporteFS />
             <ReporteB />
-        
-      
-        <button  type='primary'>
-          PDF OWO
-        </button>
-       
-
         <hr /> <hr /> <hr />
       </header>
     </div>

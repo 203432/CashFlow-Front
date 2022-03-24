@@ -45,6 +45,8 @@ const ReporteFE = () =>{
                 <th> Fecha </th>
                 <th> Descripcion </th>
                 <th> Monto </th>
+                <th> Categoria </th>
+                <th> subCategoria </th>
               </tr>
             </thead>
             <tbody>
@@ -53,6 +55,8 @@ const ReporteFE = () =>{
                   <td> {flujo.fecha}</td>
                   <td> {flujo.descripcion}</td>
                   <td> ${flujo.cantidad}</td>
+                  <td> {flujo.categoria}</td>
+                  <td> {flujo.subCategoria}</td>
                 </tr>
               ))}
             </tbody>

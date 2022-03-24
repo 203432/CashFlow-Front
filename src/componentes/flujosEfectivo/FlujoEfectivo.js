@@ -90,6 +90,7 @@ function App() {
                 <th> Monto </th>
                 <th> Descripcion </th>
                 <th> Categoria </th>
+                <th> SubCategoria </th>
               </tr>
             </thead>
             <tbody>
@@ -99,7 +100,8 @@ function App() {
                   <td> {flujo.fecha}</td>
                   <td> ${flujo.cantidad}</td>
                   <td> {flujo.descripcion}</td>
-                  <td> {flujo.id_categoria}</td>
+                  <td> {flujo.categoria}</td>
+                  <td> {flujo.subCategoria}</td>
                 </tr>
               ))}
             </tbody>
