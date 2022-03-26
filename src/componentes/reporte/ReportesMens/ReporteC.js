@@ -13,6 +13,7 @@ const ReporteC = () =>{
     const [totalCobSem2, setTotalCobSem2] = useState(0);
     const [totalCobSem3, setTotalCobSem3] = useState(0);
     const [totalCobSem4, setTotalCobSem4] = useState(0);
+    const [totalCobSem5, setTotalCobSem5] = useState(0);
     
   
     const peticionGet = () => {
@@ -46,6 +47,11 @@ const ReporteC = () =>{
             suma = suma + response.data[i].semana4;
           }
           setTotalCobSem4(suma);
+          suma = 0
+          for (var i = 0; i < size; i++) {
+            suma = suma + response.data[i].semana5;
+          }
+          setTotalCobSem5(suma);
         });
     };
   
@@ -67,6 +73,7 @@ const ReporteC = () =>{
                 <th> semana 2</th>
                 <th> semana 3 </th>
                 <th> semana 4 </th>
+                <th> semana 5 </th>
                 <th> final </th>
               </tr>
             </thead>
@@ -78,12 +85,10 @@ const ReporteC = () =>{
                   <td>${indicadores.semana2}</td>
                   <td>${indicadores.semana3}</td>
                   <td>${indicadores.semana4} </td>
+                  <td>${indicadores.semana5} </td>
                   <td>
                     $
-                    {indicadores.semana1 +
-                      indicadores.semana2 +
-                      indicadores.semana3 +
-                      indicadores.semana4}
+                    {indicadores.semana5}
                   </td>
                 </tr>
               ))}
@@ -95,7 +100,8 @@ const ReporteC = () =>{
                 <td> ${totalCobSem2}</td>
                 <td> ${totalCobSem3}</td>
                 <td> ${totalCobSem4}</td>
-                <td> ${totalCobSem1+totalCobSem2+totalCobSem2+totalCobSem4}</td>
+                <td> ${totalCobSem5}</td>
+                <td> ${totalCobSem5}</td>
               </tr>
             </tfoot>
           </table>

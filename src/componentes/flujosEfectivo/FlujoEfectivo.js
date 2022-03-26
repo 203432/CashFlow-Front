@@ -82,31 +82,7 @@ function App() {
     <div className="App">
       <header className="App-header">
         <div className="containerF">
-          <table className="table">
-            <thead>
-              <tr>
-                <th> PK </th>
-                <th> Fecha </th>
-                <th> Monto </th>
-                <th> Descripcion </th>
-                <th> Categoria </th>
-                <th> SubCategoria </th>
-              </tr>
-            </thead>
-            <tbody>
-              {data.map((flujo) => (
-                <tr key={flujo.pk}>
-                  <td> {flujo.pk}</td>
-                  <td> {flujo.fecha}</td>
-                  <td> ${flujo.cantidad}</td>
-                  <td> {flujo.descripcion}</td>
-                  <td> {flujo.categoria}</td>
-                  <td> {flujo.subCategoria}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-          <div className="inputS">
+        <div className="inputS">
             <form>
               <p>Seleccione el tipo de flujo a ingresar</p>
               <input
@@ -179,6 +155,30 @@ function App() {
           <br />
           <br />
           <br />
+          <table className="table">
+            <thead>
+              <tr>
+                <th> PK </th>
+                <th> Fecha </th>
+                <th> Monto </th>
+                <th> Descripcion </th>
+                <th> Categoria </th>
+                <th> SubCategoria </th>
+              </tr>
+            </thead>
+            <tbody>
+              {data.map((flujo) => (
+                <tr key={flujo.pk}>
+                  <td> {flujo.pk}</td>
+                  <td> {flujo.fecha}</td>
+                  <td> ${flujo.cantidad}</td>
+                  <td> {flujo.descripcion}</td>
+                  <td> {flujo.categoria}</td>
+                  <td> {flujo.subCategoria}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </div>
       </header>
     </div>

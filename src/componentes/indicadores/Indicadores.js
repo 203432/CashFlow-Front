@@ -14,29 +14,43 @@ function App() {
     var sem2 = 0
     var sem3 = 0
     var sem4 = 0
+    var sem5 = 0
     var semana = document.getElementById("semana_cobra").value
     if(semana === "1"){
       sem1 = document.getElementById("monto_cobra").value
+      sem2 = document.getElementById("monto_cobra").value
+      sem3 = document.getElementById("monto_cobra").value
+      sem4 = document.getElementById("monto_cobra").value
+      sem5 = document.getElementById("monto_cobra").value
     }
     if(semana === "2"){
       sem2 = document.getElementById("monto_cobra").value
+      sem3 = document.getElementById("monto_cobra").value
+      sem4 = document.getElementById("monto_cobra").value
+      sem5 = document.getElementById("monto_cobra").value
     }
     if(semana === "3"){
       sem3 = document.getElementById("monto_cobra").value
+      sem4 = document.getElementById("monto_cobra").value
+      sem5 = document.getElementById("monto_cobra").value
     }
     if(semana === "4"){
       sem4 = document.getElementById("monto_cobra").value
-      console.log(sem4)
+      sem5 = document.getElementById("monto_cobra").value
+    }
+    if(semana === "5"){
+      sem5 = document.getElementById("monto_cobra").value
     }
     var postData = {
       indicador: "Cobrar",
       numSemana: semana,
       Razon: document.getElementById("razon_cobra").value,
       monto: document.getElementById("monto_cobra").value,
-      semana1: parseInt(sem1),
-      semana2: parseInt(sem2),
-      semana3: parseInt(sem3),
-      semana4: parseInt(sem4),
+      semana1: parseFloat(sem1),
+      semana2: parseFloat(sem2),
+      semana3: parseFloat(sem3),
+      semana4: parseFloat(sem4),
+      semana5: parseFloat(sem5),
     };
     if (postData.numSemana === "" || postData.Razon === "" || postData.monto === "") {
       alert("Todos los campos son requeridos");
@@ -90,29 +104,43 @@ function App() {
   var sem2 = data.semana2
   var sem3 = data.semana3
   var sem4 = data.semana4
+  var sem5 = data.semana5
   var semana = document.getElementById("semana_cobra").value
   if(semana === "1"){
     sem1 = document.getElementById("monto_cobra").value
+    sem2 = document.getElementById("monto_cobra").value
+    sem3 = document.getElementById("monto_cobra").value
+    sem4 = document.getElementById("monto_cobra").value
+    sem5 = document.getElementById("monto_cobra").value
   }
   if(semana === "2"){
     sem2 = document.getElementById("monto_cobra").value
+    sem3 = document.getElementById("monto_cobra").value
+    sem4 = document.getElementById("monto_cobra").value
+    sem5 = document.getElementById("monto_cobra").value
   }
   if(semana === "3"){
     sem3 = document.getElementById("monto_cobra").value
+    sem4 = document.getElementById("monto_cobra").value
+    sem5 = document.getElementById("monto_cobra").value
   }
   if(semana === "4"){
     sem4 = document.getElementById("monto_cobra").value
-    console.log(sem4)
+    sem5 = document.getElementById("monto_cobra").value
+  }
+  if(semana === "5"){
+    sem5 = document.getElementById("monto_cobra").value
   }
   var postData = {
     indicador: "Cobrar",
     numSemana: semana,
     Razon: document.getElementById("razon_cobra").value,
     monto: document.getElementById("monto_cobra").value,
-    semana1: parseInt(sem1),
-    semana2: parseInt(sem2),
-    semana3: parseInt(sem3),
-    semana4: parseInt(sem4),
+    semana1: parseFloat(sem1),
+    semana2: parseFloat(sem2),
+    semana3: parseFloat(sem3),
+    semana4: parseFloat(sem4),
+    semana5: parseFloat(sem5),
   };
     axios
       .put("http://localhost:8000/api/v1/indicadores/"+data.pk, postData, {
@@ -142,31 +170,45 @@ function App() {
     var sem2 = 0
     var sem3 = 0
     var sem4 = 0
-     
+    var sem5 = 0
     var semana = document.getElementById("semana_pagar").value
     if(semana === "1"){
       sem1 = document.getElementById("monto_pagar").value
+      sem2 = document.getElementById("monto_pagar").value
+      sem3 = document.getElementById("monto_pagar").value
+      sem4 = document.getElementById("monto_pagar").value
+      sem5 = document.getElementById("monto_pagar").value
     }
     if(semana === "2"){
       sem2 = document.getElementById("monto_pagar").value
+      sem3 = document.getElementById("monto_pagar").value
+      sem4 = document.getElementById("monto_pagar").value
+      sem5 = document.getElementById("monto_pagar").value
     }
     if(semana === "3"){
       sem3 = document.getElementById("monto_pagar").value
+      sem4 = document.getElementById("monto_pagar").value
+      sem5 = document.getElementById("monto_pagar").value
     }
     if(semana === "4"){
       sem4 = document.getElementById("monto_pagar").value
-      console.log(sem4)
+      sem5 = document.getElementById("monto_pagar").value
     }
+    if(semana === "5"){
+      sem5 = document.getElementById("monto_pagar").value
+    }
+
 
     var postData = {
       indicador: "Pagar",
       numSemana: semana,
       Razon: document.getElementById("razon_pagar").value,
       monto: document.getElementById("monto_pagar").value,
-      semana1: parseInt(sem1),
-      semana2: parseInt(sem2),
-      semana3: parseInt(sem3),
-      semana4: parseInt(sem4),
+      semana1: parseFloat(sem1),
+      semana2: parseFloat(sem2),
+      semana3: parseFloat(sem3),
+      semana4: parseFloat(sem4),
+      semana5: parseFloat(sem5),
     };
     if (postData.numSemana === "" || postData.Razon === "" || postData.monto === "") {
       alert("Todos los campos son requeridos");
@@ -221,29 +263,43 @@ function App() {
   var sem2 = data.semana2
   var sem3 = data.semana3
   var sem4 = data.semana4
+  var sem5 = data.semana5
   var semana = document.getElementById("semana_pagar").value
   if(semana === "1"){
     sem1 = document.getElementById("monto_pagar").value
+    sem2 = document.getElementById("monto_pagar").value
+    sem3 = document.getElementById("monto_pagar").value
+    sem4 = document.getElementById("monto_pagar").value
+    sem5 = document.getElementById("monto_pagar").value
   }
   if(semana === "2"){
     sem2 = document.getElementById("monto_pagar").value
+    sem3 = document.getElementById("monto_pagar").value
+    sem4 = document.getElementById("monto_pagar").value
+    sem5 = document.getElementById("monto_pagar").value
   }
   if(semana === "3"){
     sem3 = document.getElementById("monto_pagar").value
+    sem4 = document.getElementById("monto_pagar").value
+    sem5 = document.getElementById("monto_pagar").value
   }
   if(semana === "4"){
     sem4 = document.getElementById("monto_pagar").value
-    console.log(sem4)
+    sem5 = document.getElementById("monto_pagar").value
+  }
+  if(semana === "5"){
+    sem5 = document.getElementById("monto_pagar").value
   }
   var postData = {
     indicador: "Pagar",
     numSemana: semana,
     Razon: document.getElementById("razon_pagar").value,
     monto: document.getElementById("monto_pagar").value,
-    semana1: parseInt(sem1),
-    semana2: parseInt(sem2),
-    semana3: parseInt(sem3),
-    semana4: parseInt(sem4),
+    semana1: parseFloat(sem1),
+    semana2: parseFloat(sem2),
+    semana3: parseFloat(sem3),
+    semana4: parseFloat(sem4),
+    semana5: parseFloat(sem5),
   };
     axios
       .put("http://localhost:8000/api/v1/indicadores/"+data.pk, postData, {
@@ -275,29 +331,43 @@ function App() {
     var sem2 = 0
     var sem3 = 0
     var sem4 = 0
+    var sem5 = 0
     var semana = document.getElementById("semana_banco").value
     if(semana === "1"){
       sem1 = document.getElementById("monto_banco").value
+      sem2 = document.getElementById("monto_banco").value
+      sem3 = document.getElementById("monto_banco").value
+      sem4 = document.getElementById("monto_banco").value
+      sem5 = document.getElementById("monto_banco").value
     }
     if(semana === "2"){
       sem2 = document.getElementById("monto_banco").value
+      sem3 = document.getElementById("monto_banco").value
+      sem4 = document.getElementById("monto_banco").value
+      sem5 = document.getElementById("monto_banco").value
     }
     if(semana === "3"){
       sem3 = document.getElementById("monto_banco").value
+      sem4 = document.getElementById("monto_banco").value
+      sem5 = document.getElementById("monto_banco").value
     }
     if(semana === "4"){
       sem4 = document.getElementById("monto_banco").value
-      console.log(sem4)
+      sem5 = document.getElementById("monto_banco").value
+    }
+    if(semana === "5"){
+      sem5 = document.getElementById("monto_banco").value
     }
     var postData = {
       indicador: "Banco",
       numSemana: semana,
       Razon: document.getElementById("razon_banco").value,
       monto: document.getElementById("monto_banco").value,
-      semana1: parseInt(sem1),
-      semana2: parseInt(sem2),
-      semana3: parseInt(sem3),
-      semana4: parseInt(sem4),
+      semana1: parseFloat(sem1),
+      semana2: parseFloat(sem2),
+      semana3: parseFloat(sem3),
+      semana4: parseFloat(sem4),
+      semana5: parseFloat(sem5),
     };
     if (postData.numSemana === "" || postData.Razon === "" || postData.monto === "") {
       alert("Todos los campos son requeridos");
@@ -356,29 +426,40 @@ function App() {
   var sem2 = data.semana2
   var sem3 = data.semana3
   var sem4 = data.semana4
+  var sem5 = data.semana5
   var semana = document.getElementById("semana_banco").value
   if(semana === "1"){
     sem1 = document.getElementById("monto_banco").value
+    sem2 = document.getElementById("monto_banco").value
+    sem3 = document.getElementById("monto_banco").value
+    sem4 = document.getElementById("monto_banco").value
+    sem5 = document.getElementById("monto_banco").value
   }
   if(semana === "2"){
     sem2 = document.getElementById("monto_banco").value
+    sem3 = document.getElementById("monto_banco").value
+    sem4 = document.getElementById("monto_banco").value
+    sem5 = document.getElementById("monto_banco").value
   }
   if(semana === "3"){
     sem3 = document.getElementById("monto_banco").value
+    sem4 = document.getElementById("monto_banco").value
+    sem5 = document.getElementById("monto_banco").value
   }
   if(semana === "4"){
     sem4 = document.getElementById("monto_banco").value
-    console.log(sem4)
+    sem5 = document.getElementById("monto_banco").value
   }
   var postData = {
     indicador: "Banco",
     numSemana: semana,
     Razon: document.getElementById("razon_banco").value,
     monto: document.getElementById("monto_banco").value,
-    semana1: parseInt(sem1),
-    semana2: parseInt(sem2),
-    semana3: parseInt(sem3),
-    semana4: parseInt(sem4),
+    semana1: parseFloat(sem1),
+    semana2: parseFloat(sem2),
+    semana3: parseFloat(sem3),
+    semana4: parseFloat(sem4),
+    semana5: parseFloat(sem5),
   };
     axios
       .put("http://localhost:8000/api/v1/indicadores/"+data.pk, postData, {
@@ -413,6 +494,7 @@ function App() {
                 <option className='opcion' value = "2" > 2 </option>
                 <option className='opcion' value = "3" > 3 </option>
                 <option className='opcion' value = "4" > 4 </option>
+                <option className='opcion' value = "5" > 5 </option>
             </select>
           </div>
           <div className={IndiaStyle.inputContainer}>
@@ -437,6 +519,7 @@ function App() {
                 <option value = "2" > 2 </option>
                 <option value = "3" > 3 </option>
                 <option value = "4" > 4 </option>
+                <option value = "5" > 5 </option>
             </select>
           </div>
           <div className={IndiaStyle.inputContainer}>
@@ -467,6 +550,7 @@ function App() {
                 <option value = "2" > 2 </option>
                 <option value = "3" > 3 </option>
                 <option value = "4" > 4 </option>
+                <option value = "5" > 5 </option>
             </select>
           </div>
           <div className={IndiaStyle.inputContainer}>

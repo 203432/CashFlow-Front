@@ -3,13 +3,16 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 
 const ReporteFE = () =>{
+  const token = localStorage.getItem("token");
     const mes = localStorage.getItem("mes")
-    var suma = 0;
-    var totalCobrar = 0;
-    const token = localStorage.getItem("token");
+    var sumaFE = 0;
+    var totalEfectivos = 0;
+    var totalDepositos = 0;
     //States para la tabla de cuentas por cobrar
     const [data, setData] = useState([]);
     const [totalCantidad, setTotalCantidad] = useState(0);
+    const [efectivos, setEfectivos] = useState(0);
+    const [depositos, setDepositos] = useState(0);
 
     
   
@@ -26,9 +29,18 @@ const ReporteFE = () =>{
           var size = response.data.length;
           setData(response.data);
           for (var i = 0; i < size; i++) {
-            suma = suma + response.data[i].cantidad;
+            if(response.data[i].subCategoria === "Efectivo"){
+              totalEfectivos = totalEfectivos + response.data[i].cantidad
+            }
+            if(response.data[i].subCategoria === "Deposito"){
+              totalDepositos = totalDepositos + response.data[i].cantidad
+            }
+            sumaFE = sumaFE + response.data[i].cantidad;
           }
-          setTotalCantidad(suma);
+          setEfectivos(totalEfectivos)
+          setDepositos(totalDepositos)
+          setTotalCantidad(sumaFE);
+          localStorage.setItem("Entrada",sumaFE)
         });
     };
   
@@ -39,31 +51,25 @@ const ReporteFE = () =>{
     return( 
         <div className="App">
         <header className="App-header">
+          <h1>Ingresos del mes</h1>
         <table className="table">
-            <thead>
-              <tr>
-                <th> Fecha </th>
-                <th> Descripcion </th>
-                <th> Monto </th>
-                <th> Categoria </th>
-                <th> subCategoria </th>
-              </tr>
-            </thead>
+          <thead>
+            <th></th>
+            <th>Total del mes</th>
+          </thead>
             <tbody>
-              {data.map((flujo) => (
-                <tr key={flujo.pk}>
-                  <td> {flujo.fecha}</td>
-                  <td> {flujo.descripcion}</td>
-                  <td> ${flujo.cantidad}</td>
-                  <td> {flujo.categoria}</td>
-                  <td> {flujo.subCategoria}</td>
+                <tr>
+                  <th>Efectivo</th>
+                  <td>{efectivos}</td>
                 </tr>
-              ))}
+                <tr>
+                  <th>Deposito</th>
+                  <td>{depositos}</td>
+                </tr>
             </tbody>
             <tfoot>
               <tr>
-                <td> Total de entrada</td>
-                <td> - </td>
+                <td> Total Ingresos</td>
                 <td> ${totalCantidad}</td>
               </tr>
             </tfoot>

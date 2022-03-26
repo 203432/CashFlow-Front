@@ -9,6 +9,9 @@ import ReporteFS from "./ReportesMens/ReporteFS";
 
 
 function App() {
+  var entrada =localStorage.getItem("Entrada")
+  var salida = localStorage.getItem("Salida")
+  var rentabilidad = parseInt(((entrada-salida)/salida)*100)
   const navigate = useNavigate();
   var suma = 0;
   var totalCobrar = 0;
@@ -42,6 +45,22 @@ function App() {
             <ReporteP />
             <ReporteFE />
             <ReporteFS />
+            <h1> Diferencia</h1>
+            <table>
+              <thead>
+                <th colSpan="2"> Diferencia</th>
+              </thead>
+              <tbody>
+                <tr>
+                  <th>Total Utilidad</th>
+                  <td>{entrada-salida}</td>
+                </tr>
+                <tr>
+                  <th>Margen de Rentabilidad</th>
+                  <td>{rentabilidad}%</td>
+                </tr>
+              </tbody>
+            </table>
             <ReporteB />
         <hr /> <hr /> <hr />
       </header>
