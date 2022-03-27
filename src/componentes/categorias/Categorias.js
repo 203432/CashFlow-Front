@@ -224,9 +224,9 @@ function App() {
           </div>
 
           <div className="cIzq">
-            <table className="table">
+            <table className="table" id="TCat">
               <thead>
-                <tr>
+                <tr id="bar">
                   <th> PK </th>
                   <th> Categoria</th>
                   <th> SubCategoria </th>

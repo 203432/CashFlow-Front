@@ -82,9 +82,9 @@ function App() {
     <div className="App">
       <header className="App-header">
         <div className="containerF">
-        <div className="inputS">
+          <div className="inputS">
             <form>
-              <p>Seleccione el tipo de flujo a ingresar</p>
+              <h1>Seleccione el tipo de flujo a ingresar</h1>
               <input
                 type="radio"
                 name="tipo"
@@ -155,7 +155,9 @@ function App() {
           <br />
           <br />
           <br />
-          <table className="table">
+          </div>
+          <div>
+          <table className="table" id="TFlujo">
             <thead>
               <tr>
                 <th> PK </th>
@@ -179,7 +181,8 @@ function App() {
               ))}
             </tbody>
           </table>
-        </div>
+          </div>
+        
       </header>
     </div>
   );
