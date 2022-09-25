@@ -9,7 +9,7 @@ import SStyle from '../recursos.module.css'
 import "./Flujo.css"
 
 function App() {
-const token = 'c0b7ad49032cc9a0ee03c84115f09ed6dd6aceb8';
+const token = localStorage.getItem("token");
 const [data, setData] =useState([]);
 
  const peticionGet_Categoria = () => {
@@ -31,10 +31,11 @@ const [data, setData] =useState([]);
         
     return (
       <div className="App">
+        <div className="containerF">
         <div className="margin">
           <div className={SStyle.select}>
             <select id="categoria">
-              <option defaultValue="0">Seleccione una categoria </option>
+              <option className='opcion' defaultValue="0">Seleccione una categoria </option>
               {data.map((el) => (
                 <option key={el.pk} value={el.pk}>
                   {el.subCategoria}
@@ -43,7 +44,7 @@ const [data, setData] =useState([]);
             </select>
           </div>
         </div>
-
+        </div>
       </div>
     );
 }

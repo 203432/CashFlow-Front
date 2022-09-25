@@ -1,14 +1,17 @@
-.menu {
+.form {
     background-color: #15172b;
     border-radius: 20px;
     box-sizing: border-box;
-    height: 170px;
+    height: 550px;
     padding: 20px;
     width: 320px;
-    margin-top: 300px;
+    margin-top: 100px;
 }
 
-.containerI{
-  width: 600px;
-  margin: 0 auto;
+
+
+.logoLogin{
+    width: 200px;
+    height: 200px;
+    margin-right: 20px;
 }

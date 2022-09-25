@@ -11,10 +11,10 @@ import FlujoStyle from "../recursos.module.css";
 import "./Flujo.css";
 
 function App() {
-  const token = 'c0b7ad49032cc9a0ee03c84115f09ed6dd6aceb8';
+  const token = localStorage.getItem("token");
   const [data, setData] = useState([]);
   const [tipo, setTipo] = useState("Entrada");
-  const [cat, setCat]=useState()
+  const [cat, setCat] = useState()
   const [categoria, setCategoria] = useState("");
   const cambioRadio = (e) => {
     setTipo(e.target.value);
@@ -24,7 +24,7 @@ function App() {
       .get("http://localhost:8000/api/v1/flujo/", {
         headers: {
           "Content-Type": "application/json",
-          Authorization: "Token "+ token,
+          Authorization: "Token " + token,
         },
       })
       .then((response) => {
@@ -63,7 +63,7 @@ function App() {
         .post("http://localhost:8000/api/v1/flujo/", postData, {
           headers: {
             "Content-Type": "application/json",
-            Authorization: "Token "+ token,
+            Authorization: "Token " + token,
           },
         })
         .then((response) => {
@@ -82,31 +82,9 @@ function App() {
     <div className="App">
       <header className="App-header">
         <div className="containerF">
-          <table className="table">
-            <thead>
-              <tr>
-                <th> PK </th>
-                <th> Fecha </th>
-                <th> Monto </th>
-                <th> Descripcion </th>
-                <th> Categoria </th>
-              </tr>
-            </thead>
-            <tbody>
-              {data.map((flujo) => (
-                <tr key={flujo.pk}>
-                  <td> {flujo.pk}</td>
-                  <td> {flujo.fecha}</td>
-                  <td> ${flujo.cantidad}</td>
-                  <td> {flujo.descripcion}</td>
-                  <td> {flujo.id_categoria}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
           <div className="inputS">
             <form>
-              <p>Seleccione el tipo de flujo a ingresar</p>
+              <h1>Seleccione el tipo de flujo a ingresar</h1>
               <input
                 type="radio"
                 name="tipo"
@@ -126,7 +104,6 @@ function App() {
                 onChange={cambioRadio}
               />
               <label htmlFor="salida">Salida</label>
-              <p>El radio button seleccionado es: {tipo}</p>
             </form>
           </div>
           {/* <input id="descripcion" placeholder="Descripcion" /> */}
@@ -136,6 +113,7 @@ function App() {
               className={FlujoStyle.input}
               type="text"
               placeholder=" "
+              autocomplete="off"
             />
             <div className={FlujoStyle.cut}></div>
             <label for="descripcion" className={FlujoStyle.placeholder}>
@@ -149,6 +127,7 @@ function App() {
               className={FlujoStyle.input}
               type="text"
               placeholder=" "
+              autocomplete="off"
             />
             <div className={FlujoStyle.cut}></div>
             <label for="cantidad" className={FlujoStyle.placeholder}>
@@ -176,7 +155,34 @@ function App() {
           <br />
           <br />
           <br />
-        </div>
+          </div>
+          <div>
+          <table className="table" id="TFlujo">
+            <thead>
+              <tr>
+                <th> PK </th>
+                <th> Fecha </th>
+                <th> Monto </th>
+                <th> Descripcion </th>
+                <th> Categoria </th>
+                <th> SubCategoria </th>
+              </tr>
+            </thead>
+            <tbody>
+              {data.map((flujo) => (
+                <tr key={flujo.pk}>
+                  <td> {flujo.pk}</td>
+                  <td> {flujo.fecha}</td>
+                  <td> ${flujo.cantidad}</td>
+                  <td> {flujo.descripcion}</td>
+                  <td> {flujo.categoria}</td>
+                  <td> {flujo.subCategoria}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+          </div>
+        
       </header>
     </div>
   );
